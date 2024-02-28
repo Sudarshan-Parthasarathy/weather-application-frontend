@@ -1,0 +1,131 @@
+<!--
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card bg-dark my-5">
+        <div class="card-body">
+          <input
+            id="place"
+            name="place"
+            type="text"
+            placeholder="search a city"
+            class="searchbox"
+          />
+          <ul class="text-center list-inline py-3">
+            <li class="list-inline-item">
+              <button
+                type="button"
+                class="btn btn-info"
+                (click)="processInput()"
+              >
+                Forecast
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card my-5">
+  <div class="card-body">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">City</th>
+          <th scope="col">Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let forecast of forecasts">
+          <td>{{ forecast.city }}</td>
+          <td>{{ forecast.datetime }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+-->
+<head>
+  <meta name="viewport" content="width=device-width, initial scale=1.0" />
+  <title>Weather App</title>
+  <link rel="stylesheet" href="forecast.component.css" />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+  />
+  <script src="forecast.component.ts"></script>
+</head>
+<body>
+  <div class="home">
+    <div>
+      <div>
+        <a href="" class="nav-link" routerLinkActive="active">
+          <button class="btn1">Home</button>
+        </a>
+      </div>
+      <div><h1 class="title">5 Day Weather Forecast</h1></div>
+    </div>
+    <div class="card">
+      <div class="search">
+        <input
+          id="place"
+          name="place"
+          type="text"
+          placeholder="search a city"
+          class="searchbox"
+          [(ngModel)]="inputValue"
+        />
+        <button type="button" (click)="processInput()">
+          <span class="material-symbols-outlined"> search </span>
+        </button>
+      </div>
+      <div class="forecast">
+        <div *ngFor="let forecast of forecasts">
+          <div class="card my-5">
+            <div class="card-body">
+              <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Icon</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">City</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Temperature</th>
+                    <th scope="col">Minimum Temperature</th>
+                    <th scope="col">Maximum Temperature</th>
+                    <th scope="col">Pressure</th>
+                    <th scope="col">Humidity</th>
+                    <th scope="col">Sea Level</th>
+                    <th scope="col">Ground Level</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <td>
+                    <img
+                      src="https://openweathermap.org/img/wn/{{
+                        forecast.icon
+                      }}@2x.png"
+                      alt="icon"
+                    />
+                  </td>
+                  <td>{{ forecast.main }}</td>
+                  <td>{{ forecast.city }}</td>
+                  <td>{{ forecast.datetime }}</td>
+                  <td>{{ forecast.temp }}°c</td>
+                  <td>{{ forecast.temp_min }}°c</td>
+                  <td>{{ forecast.temp_max }}°c</td>
+                  <td>{{ forecast.pressure }} mb</td>
+                  <td>{{ forecast.humidity }} g.m-3</td>
+                  <td>{{ forecast.sea_level }} mb</td>
+                  <td>{{ forecast.grnd_level }} mb</td>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

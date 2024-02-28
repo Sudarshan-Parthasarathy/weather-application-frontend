@@ -1,0 +1,72 @@
+<head>
+  <meta name="viewport" content="width=device-width, initial scale=1.0" />
+  <title>Weather App</title>
+  <link rel="stylesheet" href="airpollution.component.css" />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+  />
+  <script src="airpollution.component.ts"></script>
+</head>
+<body>
+  <div class="home">
+    <div>
+      <div>
+        <a href="" class="nav-link" routerLinkActive="active">
+          <button class="btn1">Home</button>
+        </a>
+      </div>
+      <div><h1 class="title">Air Pollution Data</h1></div>
+    </div>
+    <div class="card">
+      <div class="search">
+        <input
+          id="place"
+          name="place"
+          type="text"
+          placeholder="search a city"
+          class="searchbox"
+          [(ngModel)]="inputValue"
+        />
+        <button type="button" (click)="processInput()">
+          <span class="material-symbols-outlined"> search </span>
+        </button>
+      </div>
+      <div class="airpollution">
+        <div *ngFor="let pollution of airpollutions; first as isfirst">
+          <h1 *ngIf="isfirst">{{ pollution.city }}</h1>
+          <h3 *ngIf="isfirst">{{ pollution.on }}</h3>
+          <div class="card my-5">
+            <div class="card-body">
+              <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Icon</th>
+                    <th scope="col">Pollutant</th>
+                    <th scope="col">Station</th>
+                    <th scope="col">Pollutant_Min</th>
+                    <th scope="col">Pollutant_Max</th>
+                    <th scope="col">Pollutant_Average</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <td>
+                    <img
+                      src="../../assets/{{ pollution.pollutant_id }}.png"
+                      alt="icon"
+                    />
+                  </td>
+                  <td>{{ pollution.pollutant_id }}</td>
+                  <td>{{ pollution.station }}</td>
+                  <td>{{ pollution.min_pollution }} ppm</td>
+                  <td>{{ pollution.max_pollution }} ppm</td>
+                  <td>{{ pollution.avg_pollution }} ppm</td>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

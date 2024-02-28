@@ -1,0 +1,133 @@
+<!--
+<script src="weather.component.ts"></script>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card bg-dark my-5">
+        <div class="card-body">
+          <h2 class="card-title text-center text-white py-3">{{ title }}</h2>
+          <input
+            id="place"
+            name="place"
+            type="text"
+            placeholder="search a city"
+            class="searchbox"
+            [(ngModel)]="inputValue"
+          />
+          <ul class="text-center list-inline py-3">
+            <li class="list-inline-item">
+              <button
+                type="button"
+                class="btn btn-info"
+                (click)="processInput()"
+              >
+                weather
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card my-5">
+  <div class="card-body">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Temperature</th>
+          <th scope="col">Pressure</th>
+          <th scope="col">Humidity</th>
+          <th scope="col">Minimum Temperature</th>
+          <th scope="col">Maximum Temperature</th>
+          <th scope="col">Main</th>
+          <th scope="col">description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let weather of weathers">
+          <td>{{ weather.todays_weather.today.temp }}</td>
+          <td>{{ weather.todays_weather.today.pressure }}</td>
+          <td>{{ weather.todays_weather.today.humidity }}</td>
+          <td>{{ weather.todays_weather.today.temp_min }}</td>
+          <td>{{ weather.todays_weather.today.temp_max }}</td>
+          <td>{{ weather.todays_weather.today.main }}</td>
+          <td>{{ weather.todays_weather.today.description }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+-->
+<head>
+  <meta name="viewport" content="width=device-width, initial scale=1.0" />
+  <title>Weather App</title>
+  <link rel="stylesheet" href="weather.component.css" />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+  />
+  <script src="weather.component.ts"></script>
+</head>
+<body>
+  <div class="home">
+    <div>
+      <div>
+        <a href="" class="nav-link" routerLinkActive="active">
+          <button class="btn1">Home</button>
+        </a>
+      </div>
+      <div><h1 class="title">Today's Weather</h1></div>
+    </div>
+    <div class="card">
+      <div class="search">
+        <input
+          id="place"
+          name="place"
+          type="text"
+          placeholder="enter city name"
+          spellcheck="false"
+          [(ngModel)]="inputValue"
+        />
+        <button type="button" (click)="processInput()">
+          <span class="material-symbols-outlined"> search </span>
+        </button>
+      </div>
+      <div class="weather">
+        <div *ngFor="let weather of weathers">
+          <img
+            src="https://openweathermap.org/img/wn/{{
+              weather.todays_weather.today.icon
+            }}@2x.png"
+            alt="Icon"
+            class="material-symbols-outlined weather-icon"
+          />
+          <h3>{{ weather.todays_weather.today.description }}</h3>
+          <h1 class="temp">{{ weather.todays_weather.today.temp }}°c</h1>
+          <h2 class="city">{{ weather.todays_weather.today.city }}</h2>
+          <div class="details">
+            <div class="col">
+              <img src="../../assets/humidity.png" alt="" />
+              <div>
+                <p class="humidity">
+                  {{ weather.todays_weather.today.humidity }}
+                </p>
+                <p>Humidity</p>
+              </div>
+            </div>
+            <div class="col">
+              <img src="../../assets/pressure.png" alt="" />
+              <div>
+                <p class="pressure">
+                  {{ weather.todays_weather.today.pressure }}
+                </p>
+                <p>Pressure</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
